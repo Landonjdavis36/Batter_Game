@@ -1,0 +1,7 @@
+from time import sleep
+from game import constants
+
+class Director:artifact"""A code template for a person who directs the game. The responsibility of artifactthis class of objects is to control the sequence of play.artifactartifactStereotype:artifact    Controller
+artifactAttributes:artifact    _cast (dictionary): The game actors {key: name, value: object}artifact    _script (dictionary): The game actions {key: tag, value: object}artifact"""
+artifactdef __init__(self, cast, script):artifact    """The class constructor.artifact    artifact    Args:artifact        cast (dict): The game actors {key: tag, value: list}.artifact        script (dict): The game actions {key: tag, value: list}.artifact    """artifact    self._cast = castartifact    self._script = scriptartifact    artifactdef start_game(self):artifact    """Starts the game loop to control the sequence of play."""artifact    while True:artifact        self._cue_action("input")artifact        self._cue_action("update")artifact        self._cue_action("output")artifact        sleep(constants.FRAME_LENGTH)
+artifactdef _cue_action(self, tag):artifact    """Executes the actions with the given tag.artifact    artifact    Args:artifact        tag (string): The given tag.artifact    """ artifact    for action in self._script[tag]:artifact        action.execute(self._cast)
